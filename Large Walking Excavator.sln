@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Large Walking Excavator", "Large Walking Excavator\Large Walking Excavator.csproj", "{FCCCF465-ACE8-4827-98C3-87F9F53BAC53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCCCF465-ACE8-4827-98C3-87F9F53BAC53}.Debug|x64.ActiveCfg = Debug|x64
+		{FCCCF465-ACE8-4827-98C3-87F9F53BAC53}.Debug|x64.Build.0 = Debug|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48FB396F-BF3F-464E-A3D8-3A7F2296A084}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+### Settings ###
+# Turns by this angle every walk step
+addYaw=0
+# keeps This Pitch relative to Gravity
+setPitch=0
+
+
+### States handled by Script ###
+walkActiveLeg=right
+walkInactiveLeg=left
+walkState=1
