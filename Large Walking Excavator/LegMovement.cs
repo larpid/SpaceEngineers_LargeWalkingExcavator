@@ -124,7 +124,14 @@ namespace IngameScript
             
             public RotorPositionSet(IMyMotorStator rotor, double targetAngle)
             {
-                this.targetAngle = targetAngle;
+                if (targetAngle > 0)
+                {
+                    this.targetAngle = targetAngle;
+                }
+                else
+                {
+                    this.targetAngle = -1 * targetAngle;
+                }
                 this.rotor = rotor;
 
                 this.StartMovement();

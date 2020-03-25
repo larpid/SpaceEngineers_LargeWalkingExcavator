@@ -29,6 +29,7 @@ namespace IngameScript
         public Dictionary<string, Leg> legs;
         public IMyCockpit cockpit;
         Dictionary<string, string> customData;
+        private IMyTextSurface cockpitLcdLarge;
 
         public LegMovement activeMovementAction;
 
@@ -74,15 +75,18 @@ namespace IngameScript
                 ["left"] = new Leg(gts, "Left")
             };
             this.cockpit = gts.GetBlockWithName("LWE Cockpit") as IMyCockpit;
-            
+            this.cockpitLcdLarge = Me.GetSurface(0);
+
             this.activeMovementAction = null;
 
             if (!(this.legs["right"].checkValidity() && this.legs["left"].checkValidity() && this.cockpit != null))
             {
+                this.cockpitLcdLarge.WriteText("one ore more of the expected mechanical components not found!");
                 Echo("one ore more of the expected mechanical components not found!");
             }
             else
             {
+                this.cockpitLcdLarge.WriteText("all set up!");
                 Echo("all set up!");
             }
         }
@@ -109,6 +113,7 @@ namespace IngameScript
                 {
                     Runtime.UpdateFrequency = UpdateFrequency.None;
                     this.activeMovementAction = null;
+                    this.cockpitLcdLarge.WriteText("movement script stopped", true);
                 }
             }
 
@@ -134,8 +139,6 @@ namespace IngameScript
                         customData["walkState"] = (Convert.ToInt32(customData["walkState"]) + 1).ToString();
                     }
                     WriteCustomData();
-
-                    //Runtime.UpdateFrequency = UpdateFrequency.None;
                 }
             }
             else
@@ -144,6 +147,8 @@ namespace IngameScript
                 ReadCustomData();
                 var activeLeg = this.legs[customData["walkActiveLeg"]];
                 var inactiveLeg = this.legs[customData["walkInactiveLeg"]];
+
+                this.cockpitLcdLarge.WriteText("walk state : " + customData["walkActiveLeg"] + " " + customData["walkState"]);
                 Echo("walk state : " + customData["walkActiveLeg"] + " " + customData["walkState"]);
 
                 switch (Convert.ToInt32(customData["walkState"]))
@@ -230,12 +235,6 @@ namespace IngameScript
         private void WriteCustomData()
         {
             // write the command blocks custom data field
-            //string customDataAccumulated = "";
-            //foreach (KeyValuePair<string, string> dataPair in this.customData)
-            //{
-            //    customDataAccumulated = String.Join("\n", customDataAccumulated, String.Join("=", dataPair.Key, dataPair.Value));
-            //}
-            //Me.CustomData = customDataAccumulated;
             Me.CustomData =
                 "### Settings ###\n" +
                 "# Turns by this angle every walk step\n" +
